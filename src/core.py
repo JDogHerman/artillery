@@ -55,19 +55,19 @@ def ban(ip):
             fileopen = file("/var/artillery/banlist.txt", "r")
             data = fileopen.read()
             if ip not in data:
-				shun = read_config("SHUN").lower()
-				if shun == "on":
-					#call shun_v2_encripted to run
-                    			print "Calling Shun Script"
-					subprocess.Popen("cd /var/artillery/src;shun.py %s 1" % ip, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
-                    filewrite = file("/var/artillery/banlist.txt", "a")
-                    filewrite.write(ip+"\n")
-                    filewrite.close()
-				else:
-					filewrite = file("/var/artillery/banlist.txt", "a")
-					subprocess.Popen("iptables -I ARTILLERY 1 -s %s -j DROP" % ip, shell=True).wait()
-					filewrite.write(ip+"\n")
-					filewrite.close()
+		shun = read_config("SHUN").lower()
+		if shun == "on":
+			#call shun_v2_encripted to run
+                	print "Calling Shun Script"
+			subprocess.Popen("cd /var/artillery/src;shun.py %s 1" % ip, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+			filewrite = file("/var/artillery/banlist.txt", "a")
+			filewrite.write(ip+"\n")
+			filewrite.close()
+		else:
+			filewrite = file("/var/artillery/banlist.txt", "a")
+			subprocess.Popen("iptables -I ARTILLERY 1 -s %s -j DROP" % ip, shell=True).wait()
+			filewrite.write(ip+"\n")
+			filewrite.close()
 
         # if running windows then route attacker to some bs address
         if is_windows():
