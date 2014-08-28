@@ -55,17 +55,18 @@ def ban(ip):
             fileopen = file("/var/artillery/banlist.txt", "r")
             data = fileopen.read()
             if ip not in data:
-				#if config has shun set to on
+				shun = read_config("shun").lower()
+				if shun = "on":
 					#call shun_v2_encripted to run
-					#filewrite = file("/var/artillery/banlist.txt", "a")
-					#subprocess.Popen("iptables -I ARTILLERY 1 -s %s -j DROP" % ip, shell=True).wait()
-					#filewrite.write(ip+"\n")
-					#filewrite.close()
-				#else:
-                filewrite = file("/var/artillery/banlist.txt", "a")
-                subprocess.Popen("iptables -I ARTILLERY 1 -s %s -j DROP" % ip, shell=True).wait()
-                filewrite.write(ip+"\n")
-                filewrite.close()
+					print "Need to call shun script to run"
+					filewrite = file("/var/artillery/banlist.txt", "a")
+					filewrite.write(ip+"\n")
+					filewrite.close()
+				else:
+					filewrite = file("/var/artillery/banlist.txt", "a")
+					subprocess.Popen("iptables -I ARTILLERY 1 -s %s -j DROP" % ip, shell=True).wait()
+					filewrite.write(ip+"\n")
+					filewrite.close()
 
         # if running windows then route attacker to some bs address
         if is_windows():
