@@ -10,6 +10,9 @@
 # Install: python setup.py
 #
 #############################################################################################
+#dO YOU WANT TO PERMITER FIREWALL SHUN RATHER THAN LOCAL FIREWALL BAN?
+#
+SHUN=ON
 #
 # DETERMINE IF YOU WANT TO MONITOR OR NOT
 MONITOR=ON
