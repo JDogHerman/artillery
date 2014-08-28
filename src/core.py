@@ -55,7 +55,7 @@ def ban(ip):
             fileopen = file("/var/artillery/banlist.txt", "r")
             data = fileopen.read()
             if ip not in data:
-				shun = read_config("shun").lower()
+				shun = read_config("SHUN").lower()
 				if shun == "on":
 					#call shun_v2_encripted to run
 					print "Need to call shun script to run"
